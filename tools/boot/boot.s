@@ -117,7 +117,13 @@ prepare_to_open_file:
 	pop ax ; get fat cluster for further information
 	call next_cluster_in_chain
 	pop es
-
+	
+;code for switching to mode13h 320x200x256 http://www.rohitab.com/discuss/topic/33404-vga-mode-13h/
+mode13h:
+	mov ah, 0
+	mov al, 0x13
+	int 0x10
+	
 jmp_to_stage2:
 	jmp SECOND_STAGE_BASE
 
